@@ -1,0 +1,268 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.banner {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.banner-logo img {
+    height: 80px; /* 이미지 크기 조절 */
+    width: auto;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+.banner h1 {
+    margin: 0 auto; /* 중앙 정렬 */
+    flex-grow: 1; /* 남은 공간을 채움 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+.top {
+    flex-grow: 1; /* 나머지 공간을 채우도록 설정 */
+    display: flex;
+    justify-content: space-between; /* 내부 요소를 양 끝에 배치 */
+    align-items: center;
+    padding: 10px 0;
+     margin-left: 420px;
+    padding: 20px;
+}
+
+
+
+.banner-login a {
+    color: white; /* 로그인 링크 색상 변경 */
+    text-decoration: none; /* 밑줄 제거 */
+    margin-right: 10px; /* 링크 사이의 여백 추가 */
+}
+
+.banner-login {
+    margin-right: 20px;
+}
+
+
+.dashboard {
+    background-color: #f4f4f4;
+    padding: 15px;
+    width: 250px;
+    height: 100vh;
+    float: left;
+}
+
+.dashboard ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.dashboard ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.dashboard ul li ul {
+    display: none;
+    list-style-type: none;
+    padding: 0;
+    background-color: #e6e6e6; /* 하위 메뉴 배경색 */
+}
+
+.dashboard ul li:hover ul {
+    display: block;
+    animation: fadeIn 0.5s; /* 하위 메뉴에 대한 페이드인 애니메이션 */
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.dashboard ul li ul li a {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-bottom: none;
+}
+
+.dashboard ul li ul li a:before {
+    content: "→ ";
+}
+
+.dashboard ul li ul li a:hover {
+    background-color: #ddd;
+}
+
+.dashboard ul li.active-parent > ul {
+    display: block; /* 활성화된 상위 메뉴의 하위 메뉴 항상 표시 */
+}
+
+.dashboard ul li.active-parent > a {
+    background-color: #ddd; /* 활성화된 상위 메뉴 아이템의 배경색 변경 */
+    color: #333; /* 활성화된 상위 메뉴 아이템의 텍스트 색상 변경 */
+}
+
+.dashboard ul li ul li a.active {
+    background-color: #bfbfbf; /* 활성화된 하위 메뉴 아이템의 배경색 변경 */
+    color: #333; /* 활성화된 하위 메뉴 아이템의 텍스트 색상 변경 */
+    font-weight: bold; /* 텍스트 굵게 표시 */
+}
+
+.content {
+    margin-left: 280px;
+    padding: 10px;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.success{
+	display: flex;
+	justify-content: center;
+}
+
+.success button{
+	margin-left: 10px;
+}
+
+/* 검색 입력란 스타일 */
+input[type="text"] {
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+.SearchAlert td:nth-child(2){
+	text-align: left;
+}
+.article_table th:first-child{
+	width: 8%;
+}
+.article_table th:nth-child(3){
+	width: 10%;
+}
+.article_table th:last-child{
+	width: 8%;
+}
+
+
+/* 페이징 코드 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.pagination a.active {
+    background-color: #333;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.home-intro {
+    text-align: center;
+}
+
+
+
+/* 이미지 표시 영역 */
+.home-intro .image-area {
+    background-color: #fff; /* 배경색 추가 */
+    padding: 20px;
+    margin-top: 20px; /* 여백 추가 */
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 그림자 추가 */
+    width: 97%;
+    text-align: center;
+    position: relative;
+}
+
+.home-intro .image-area img {
+    width: 70%; /* 이미지 크기 조절 */
+    height: 60vh;
+}
+
+/* 안내문구 영역 */
+.home-intro h2 {
+    text-align: left;
+    background-color: #f4f4f4; /* 배경색 추가 */
+    padding: 10px;
+    border-radius: 5px; /* 테두리 둥글게 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 그림자 추가 */
+}
+
+.image-area button {
+    padding: 10px 20px;
+    font-size: 24px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.image-area button:hover {
+    background-color: #000000;
+}
+
+.image-button.left {
+    left: 10%; /* 왼쪽 버튼 위치 조정 */
+}
+
+.image-button.right {
+    right: 10%; /* 오른쪽 버튼 위치 조정 */
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.logistics.mapper.BoardMapper">
+
+
+<!-- ProductList -->
+	<select id="getListWithPaging" resultType="org.logistics.domain.ProductVO">
+	<![CDATA[
+		SELECT * FROM (SELECT ROWNUM AS NUM, product_list.* FROM product_list)WHERE NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} order by p_no
+		]]>
+	</select>
+
+	
+<!-- BoardMapper.getTotalCount() -->
+	<select id="getTotalCount" resultType="int">
+		select count(*) from product_list
+	</select>
+	
+<select id="getNameTotalCount" resultType="int">
+    select count(*) from product_list where p_name like '%' || #{code} || '%'
+    
+</select>
+
+
+
+<!-- BoardMapper.getSearchNameList() -->
+	<select id="getSearchNameList" resultType="org.logistics.domain.ProductVO">
+		SELECT * FROM (SELECT ROWNUM AS NUM, product_list.* FROM product_list where p_name like '%' || #{code} || '%')WHERE NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} order by p_no 
+	</select>
+	
+<!-- BoardMapper.getSearchNumberList() -->
+	<select id="getSearchNumberList" resultType="org.logistics.domain.ProductVO">
+		select * from product_list where L_no = #{code} 
+	</select>
+	
+  <!-- ProductList Finish	 -->
+	
+	
+<!-- ProductLogList.jsp -->	
+
+	<select id="getListWithLogPaging" resultType="org.logistics.domain.ProductLogVO">
+	<![CDATA[
+		SELECT * FROM (SELECT ROWNUM AS NUM, product_Log.* FROM product_Log)WHERE NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} order by l_no
+		]]>
+	</select>
+
+	
+<!-- BoardMapper.getTotalCount() -->
+	<select id="getLogTotalCount" resultType="int">
+		select count(*) from product_Log
+	</select>
+	
+<select id="getNameLogTotalCount" resultType="int">
+    select count(*) from product_Log where l_name like '%' || #{code} || '%'
+    
+</select>
+
+
+
+<!-- BoardMapper.getSearchNameList() -->
+	<select id="getSearchNameLogList" resultType="org.logistics.domain.ProductLogVO">
+		SELECT * FROM (SELECT ROWNUM AS NUM, product_Log.* FROM product_Log where l_name like '%' || #{code} || '%')WHERE NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} order by l_no 
+	</select>
+	
+<!-- BoardMapper.getSearchNumberList() -->
+	<select id="getSearchNumberLogList" resultType="org.logistics.domain.ProductLogVO">
+		select * from product_Log where l_no = #{code} 
+	</select>
+	
+	<!-- ProductLogList.jsp Finish -->	
+
+
+
+
+</mapper>
