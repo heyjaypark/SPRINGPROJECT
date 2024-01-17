@@ -32,7 +32,7 @@
 	
 <!-- BoardMapper.getSearchNumberList() -->
 	<select id="getSearchNumberList" resultType="org.logistics.domain.ProductVO">
-		select * from product_list where L_no = #{code} 
+		select * from product_list where P_no = #{code} 
 	</select>
 	
   <!-- ProductList Finish	 -->
@@ -70,6 +70,17 @@
 	</select>
 	
 	<!-- ProductLogList.jsp Finish -->	
+	
+	<!-- PRODUCTREGI.jsp -->
+	
+	<insert id="ProductRegi" parameterType="org.logistics.domain.ProductRegiVO">
+INSERT INTO product_list (p_no,p_name, p_seoul, p_suwon, p_incheon, price)
+        VALUES (S_PRODUCT_LIST.nextval,#{p_name}, #{p_seoul}, #{p_suwon}, #{p_incheon}, #{price})
+	</insert>
+	<insert id="ProductLogRegi" parameterType="map">
+INSERT INTO product_log VALUES (S_PRODUCT_log.nextval,'insert',s_product_list.currval,#{productregivo.p_name}, #{productregivo.p_seoul}, #{productregivo.p_suwon}, #{productregivo.p_incheon}, #{productregivo.price},#{productregivo.date},'asdf')
+	</insert>
+
 
 
 

@@ -4,15 +4,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.logistics.domain.ProductVO;
+import org.logistics.domain.ProductRegiVO;
 import org.logistics.service.BoardService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
 
@@ -95,15 +96,38 @@ public class BoardController {
 		
 	}
 	
-	@PostMapping("/ProductRegist")
-	public String register(@RequestParam("p_name") String p_name,@RequestParam("p_seoul")int p_seoul,@RequestParam("p_suwon") int p_suwon,@RequestParam("p_incheon")int p_incheon,@RequestParam("price") int price,@RequestParam("date") Date date,@RequestParam("writer") String writer, RedirectAttributes rttr) {
-		ProductVO productvo = new ProductVO(p_name, p_seoul, p_suwon,p_incheon,price,date,writer);
 
-		
-		rttr.addFlashAttribute("result","Success");
-
-		return "redirect:/in/Productregi";
-	}
+	  @PostMapping("/ProductRegist")
+	  public String register(@ModelAttribute ProductRegiVO productregivo, @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+		  System.out.println("ProductRegiVO" + productregivo.getP_name());
+	  service.register(productregivo);
+	  service.Logregister(productregivo, date);
+	   
+	  return "redirect:/in/Productregi"; }
+	 
+	 
+	  
+	  
+	  
+	  
+	  
+	/*
+	 * @PostMapping("/ProductRegist") public String register(@RequestParam("p_name")
+	 * String p_name,@RequestParam("p_seoul")int p_seoul,@RequestParam("p_suwon")
+	 * int p_suwon,@RequestParam("p_incheon")int p_incheon,@RequestParam("price")
+	 * int price,@RequestParam("date") Date date,@RequestParam("writer") String
+	 * writer, RedirectAttributes rttr) { ProductRegiVO productregivo = new
+	 * ProductRegiVO(p_name, p_seoul, p_suwon,p_incheon,price,date,writer);
+	 * service.register(productregivo);
+	 * 
+	 * 
+	 * 
+	 * rttr.addFlashAttribute("result","Success");
+	 * 
+	 * return "redirect:/in/Productregi"; }
+	 */
+		 
+	 
 	
 			 
 	

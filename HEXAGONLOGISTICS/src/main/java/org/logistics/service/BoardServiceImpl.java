@@ -1,10 +1,12 @@
 package org.logistics.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.logistics.domain.PageDTO;
 import org.logistics.domain.PageLogDTO;
 import org.logistics.domain.ProductLogVO;
+import org.logistics.domain.ProductRegiVO;
 import org.logistics.domain.ProductVO;
 import org.logistics.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,85 +38,84 @@ public class BoardServiceImpl implements BoardService {
 
 		return pageDTO;
 	}
-	
+
 	@Override
-	public PageDTO getNameProduct(String code,int pageNum) {
+	public PageDTO getNameProduct(String code, int pageNum) {
 		int size = 10;
 		List<ProductVO> content = mapper.getSearchNameList(pageNum, size, code);
-			
-			int total = mapper.getNameTotalCount(code);
-			
-			PageDTO pageDTO = new PageDTO(total,pageNum,size,content);
-					return pageDTO;
-		}
-		
-		
+
+		int total = mapper.getNameTotalCount(code);
+
+		PageDTO pageDTO = new PageDTO(total, pageNum, size, content);
+		return pageDTO;
+	}
 
 	@Override
 	public PageDTO getNumberProduct(int code) {
 		int size = 10;
 		int pageNum = 1;
 
-			List<ProductVO> content = mapper.getSearchNumberList(code);
-			PageDTO pageDTO = new PageDTO(1,pageNum,size,content);
-			return pageDTO;
+		List<ProductVO> content = mapper.getSearchNumberList(code);
+		PageDTO pageDTO = new PageDTO(1, pageNum, size, content);
+		return pageDTO;
 
-		
-		}
-	/* ProductList Finish*/
-	
+	}
+	/* ProductList Finish */
+
 	/* ProductLogList */
-	
+
 	@Override
 	public PageLogDTO getProductLogPage(int pageNum) {
 		int size = 10;
-		
+
 		List<ProductLogVO> content = mapper.getListWithLogPaging(pageNum, size);
-		
+
 		int total = mapper.getLogTotalCount();
-		
+
 		PageLogDTO pageLogDTO = new PageLogDTO(total, pageNum, size, content);
-		
+
 		// PageDTO에서 startPage 값을 확인
 		int endPage = pageLogDTO.getEndPage();
 		System.out.println("endPage: " + endPage);
-		
+
 		return pageLogDTO;
 	}
-	
+
 	@Override
-	public PageLogDTO getNameProductLog(String code,int pageNum) {
+	public PageLogDTO getNameProductLog(String code, int pageNum) {
 		int size = 10;
 		List<ProductLogVO> content = mapper.getSearchNameLogList(pageNum, size, code);
-		
+
 		int total = mapper.getNameLogTotalCount(code);
-		
-		PageLogDTO pageLogDTO = new PageLogDTO(total,pageNum,size,content);
+
+		PageLogDTO pageLogDTO = new PageLogDTO(total, pageNum, size, content);
 		return pageLogDTO;
 	}
-	
-	
-	
+
 	@Override
 	public PageLogDTO getNumberProductLog(int code) {
 		int size = 10;
 		int pageNum = 1;
-		
+
 		List<ProductLogVO> content = mapper.getSearchNumberLogList(code);
-		PageLogDTO pageLogDTO = new PageLogDTO(1,pageNum,size,content);
+		PageLogDTO pageLogDTO = new PageLogDTO(1, pageNum, size, content);
 		return pageLogDTO;
-		
-		
+
 	}
+
+	/* ProductLogList Finish */
+
 	
-	/* ProductLogList Finish*/
-	
-	
-		
-		
-	}
-	
-	
-	
-	
-	
+	  @Override public void register(ProductRegiVO productregivo) {
+		  
+		  
+	  mapper.ProductRegi(productregivo);
+}
+	  @Override
+	  public void Logregister(ProductRegiVO productregivo, Date date) {
+		mapper.ProductLogRegi(productregivo, date);  
+	  }
+	  
+	  }
+	  
+

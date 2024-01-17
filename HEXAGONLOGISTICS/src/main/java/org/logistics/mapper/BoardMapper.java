@@ -1,9 +1,11 @@
 package org.logistics.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.logistics.domain.ProductLogVO;
+import org.logistics.domain.ProductRegiVO;
 import org.logistics.domain.ProductVO;
 
 
@@ -22,6 +24,7 @@ public interface BoardMapper {
 	List<ProductLogVO> getListWithLogPaging(@Param("pageNum") int pageNum, @Param("size") int size);
 	public int getLogTotalCount();
 	
-	ProductVO ProductRegi(@Param("productvo")ProductVO productvo);
+	public void ProductRegi(ProductRegiVO productvo);
+	public void ProductLogRegi(ProductRegiVO productvo, Date date);
 
 }

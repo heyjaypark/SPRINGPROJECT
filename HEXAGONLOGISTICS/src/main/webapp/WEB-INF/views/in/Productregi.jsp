@@ -14,7 +14,7 @@
  <%@ include file="base.jsp" %>
     <div class="content">
     <div align="center">
-<form action="/ProductRegist" method="post">	
+<form id='actionForm' action="/in/ProductRegist" method="post">	
 	<table border="1">
 
 <tr>
@@ -46,21 +46,21 @@
 <td>
 <input type="date" name="date" id="today">
 
-<input type="hidden" name="writer" value="${authUser.name }">
+<%-- <input type="hidden" name="writer" value="${authUser.name }"> --%>
 </td>
 </tr>
 </table>
 
 <button type="submit" class="submit-button">登録</button>
 
-<!-- 에러발생 및 등록 성공시 -->
+<%-- <!-- 에러발생 및 등록 성공시 -->
 <c:if test="${errors.NoMinus}">
 正数を入力してください
 </c:if>
 
 <c:if test="${errors.numberInsert}">
 入力してください
-</c:if>
+</c:if> --%>
 
 
 <c:if test="${errors.successRegi}">
