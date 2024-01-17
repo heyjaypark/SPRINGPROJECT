@@ -1,12 +1,11 @@
 package org.logistics.controller;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.logistics.domain.ProductRegiVO;
+import org.logistics.domain.ProductVO;
 import org.logistics.service.BoardService;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,16 +53,44 @@ public class BoardController {
 		}
 		model.addAttribute("errors", errors);
 	}
-	/* PRODUCTLIST FINISH*/
-	
-	/* PRODUCTLOG */
-	@GetMapping("/ProductLogList")
-	public void ProductLogList(@RequestParam(name = "pageNum", defaultValue = "1") int pageNum, Model model) {
+	@PostMapping("/productsearchchange")
+	public String productsearchchange(@RequestParam(name = "pageNum", defaultValue = "1") int pageNum,
+			@RequestParam("code") String code, Model model) {
 		
-		model.addAttribute("product", service.getProductLogPage(pageNum));
+		Map<String, Boolean> errors = new HashMap<>();
+		model.addAttribute("errors", errors);
+				
+				model.addAttribute("product", service.getNameProduct(code, pageNum));
+				
+				return "/in/ProductSerchlistAlert";
+
+	}
+	@GetMapping("/productsearchchange")
+	public String productsearchchangewithpageNum(@RequestParam(name = "pageNum", defaultValue = "1") int pageNum,
+			@RequestParam("code") String code, Model model) {
+		
+		Map<String, Boolean> errors = new HashMap<>();
+		model.addAttribute("errors", errors);
+		
+		model.addAttribute("product", service.getNameProduct(code, pageNum));
+		
+		return "/in/ProductSerchlistAlert";
 		
 	}
 	
+	
+	
+	
+	/* PRODUCTLIST FINISH */
+
+	/* PRODUCTLOG */
+	@GetMapping("/ProductLogList")
+	public void ProductLogList(@RequestParam(name = "pageNum", defaultValue = "1") int pageNum, Model model) {
+
+		model.addAttribute("product", service.getProductLogPage(pageNum));
+
+	}
+
 	@GetMapping("/ProductLogSearchList")
 	public void ProductLogSearchList(@RequestParam(name = "pageNum", defaultValue = "1") int pageNum,
 			@RequestParam("select_num") int selectNum, @RequestParam("code") String code, Model model) {
@@ -86,52 +113,78 @@ public class BoardController {
 		}
 		model.addAttribute("errors", errors);
 	}
-	/* PRODUCTLOG FINISH*/
-	
+
+	/* PRODUCTLOG FINISH */
+
 	/* PRODUCT REGI */
-	
-	
 	@GetMapping("/Productregi")
 	public void ProductRegi() {
+
+	}
+
+	@GetMapping("/Productupdates")
+	public void Productupdates() {
+
+	}
+	@GetMapping("/RegistSales")
+	public void RegistSales() {
+		
+	}
+	@GetMapping("/ListSales_overview")
+	public void ListSales_overview() {
+		
+	}
+	@GetMapping("/listArticle")
+	public void listArticle() {
+		
+	}
+	@GetMapping("/newArticleForm")
+	public void newArticleForm() {
+		
+	}
+	@GetMapping("/ProductSerchlistAlert")
+	public void ProductSerchlistAlert() {
 		
 	}
 	
 
-	  @PostMapping("/ProductRegist")
-	  public String register(@ModelAttribute ProductRegiVO productregivo, @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-		  System.out.println("ProductRegiVO" + productregivo.getP_name());
-	  service.register(productregivo);
-	  service.Logregister(productregivo, date);
-	   
-	  return "redirect:/in/Productregi"; }
-	 
-	 
-	  
-	  
-	  
-	  
-	  
-	/*
-	 * @PostMapping("/ProductRegist") public String register(@RequestParam("p_name")
-	 * String p_name,@RequestParam("p_seoul")int p_seoul,@RequestParam("p_suwon")
-	 * int p_suwon,@RequestParam("p_incheon")int p_incheon,@RequestParam("price")
-	 * int price,@RequestParam("date") Date date,@RequestParam("writer") String
-	 * writer, RedirectAttributes rttr) { ProductRegiVO productregivo = new
-	 * ProductRegiVO(p_name, p_seoul, p_suwon,p_incheon,price,date,writer);
-	 * service.register(productregivo);
-	 * 
-	 * 
-	 * 
-	 * rttr.addFlashAttribute("result","Success");
-	 * 
-	 * return "redirect:/in/Productregi"; }
-	 */
-		 
-	 
-	
-			 
+	@PostMapping("/ProductRegist")
+	public String register(@ModelAttribute ProductRegiVO productregivo) {
+		System.out.println("ProductRegiVO" + productregivo);
+
+		service.register(productregivo);
+		service.Logregister(productregivo);
+
+		return "redirect:/in/Productregi";
+	}
+	/* PRODUCT REGI FINISH */
+	/* PRODUCT UPDATE */
+	@PostMapping("/Productupdatesearch")
+	public String ProductupdateSearch(@RequestParam("p_no") String p_no, Model model) {
+
+		model.addAttribute("product1",service.SearchNumberProduct(Integer.parseInt(p_no)));
+		
+		return "/in/Productupdates";
+
+	}
+	@PostMapping("/Productupdates")
+	public String Productupdate(@ModelAttribute ProductRegiVO productregivo) {
+		service.ProductUpdate(productregivo);
+		
+		service.ProductLogUpdate(productregivo);
+		
+		return "/in/Productupdates";
+	}
+			
 	
 	
+	
+	
+	
+	
+	
+	/* PRODUCT UPDATE FINISH */
+
 
 
 }

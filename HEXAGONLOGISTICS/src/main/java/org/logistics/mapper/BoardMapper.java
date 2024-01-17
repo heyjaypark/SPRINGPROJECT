@@ -25,6 +25,12 @@ public interface BoardMapper {
 	public int getLogTotalCount();
 	
 	public void ProductRegi(ProductRegiVO productvo);
-	public void ProductLogRegi(ProductRegiVO productvo, Date date);
+	 public void ProductLogRegi(ProductRegiVO productvo); 
+	 public ProductVO ProductUpdateSearch(@Param("p_no") int p_no); 
+	 public void ProductUpdate(ProductRegiVO productvo);
+	 public void ProductLogUpdate(ProductRegiVO productvo);
+	 
+	 
+	 
 
 }

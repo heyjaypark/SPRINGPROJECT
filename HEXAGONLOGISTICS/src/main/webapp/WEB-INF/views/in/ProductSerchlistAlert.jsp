@@ -32,22 +32,22 @@
 	<div align="center">
 
 		<br />
-		<form action="productsearchchange.do" name="p_no" method="post">
+		<form action="/in/productsearchchange" name="p_no" method="post">
 			<div>
 
 
-				品目名:<input type="text" name="code" value="${param.code}"
+				品目名:<input type="text" name="code" id="code" value="${param.code}"
 					list="searchOptions" /> <input type="submit" value="検索">
 			</div>
 
 
 
 
-			<c:if test="${errors.NumberFormatException}">
+			<%-- <c:if test="${errors.NumberFormatException}">
 				<script type="text/javascript">
 					alert("数字のみ入力可能です。");
 				</script>
-			</c:if>
+			</c:if> --%>
 
 		</form>
 		<input type="button" value="창닫기" onclick="window.close()">
@@ -64,18 +64,18 @@
 
 			</tr>
 
-			<c:if test="${productPage.hasNoArticles()}">
+			<%-- <c:if test="${productPage.hasNoArticles()}">
 				<tr>
 					<td colspan="4">商品がありません</td>
 				</tr>
-			</c:if>
+			</c:if> --%>
 
 			<!-- 특정품목 검색시 결과를 표시하고 테이블을 닫는다.
 特定品目検索時に結果を表示し、テーブルを閉じる。 -->
 
 			<!-- 페이지에 따른 품목리스트 표시
 ページによる品目リストの表示 -->
-			<c:forEach var="product" items="${productChange}">
+			<c:forEach var="product" items="${product.content}">
 				<tr>
 					<td>${product.p_no}</td>
 					<td><input type="hidden" id="p_name_${product.p_no}"
@@ -84,7 +84,21 @@
 						onclick="SetParentText('${product.p_no}')"></td>
 				</tr>
 			</c:forEach>
-
+<tr>
+<td colspan="6">
+<c:if test="${product.startPage > 5}">
+<a href="/in/productsearchchange?code=${param.code}&pageNum=${product.startPage - 5}">[以前]</a>
+</c:if>
+<c:forEach var="pNo"
+begin="${product.startPage}"
+end="${product.endPage}">
+<a href="/in/productsearchchange?code=${param.code}&pageNum=${pNo}">[${pNo}]</a>
+</c:forEach>
+<c:if test="${product.endPage < productPage.totalPages}">
+<a href="/in/productsearchchange?code=${param.code}&pageNum=${product.startPage + 5}">[次のページ]</a>
+</c:if>
+</td>
+</tr>
 		</table>
 	</div>
 </div>

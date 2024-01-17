@@ -19,28 +19,28 @@
     </div>
     <div class="dashboard">
         <ul>
-            <li><a href="/list">在庫状況</a>
+            <li><a href="/in/ProductList">在庫状況</a>
                 <ul>
                     <li><a href="/in/ProductList">在庫目録</a></li>
                     <li><a href="/in/ProductLogList">入庫記録</a></li>
                 </ul>
             </li>
-            <li><a href="productregi.do">在庫管理</a>
+            <li><a href="/in/Productregi">在庫管理</a>
                 <ul>
                     <li><a href="/in/Productregi">新規登録</a></li>
-                    <li><a href="productupdate.do">入庫処理</a></li>
+                    <li><a href="/in/Productupdates">入庫処理</a></li>
                 </ul>
             </li>
-            <li><a href="registSales.do">販売(出庫)</a>
+            <li><a href="/in/RegistSales">販売(出庫)</a>
                 <ul>
-                    <li><a href="registSales.do">販売登録</a></li>
-                    <li><a href="salesList.do">出庫履歴</a></li>
+                    <li><a href="/in/RegistSales">販売登録</a></li>
+                    <li><a href="/in/ListSales_overview">出庫履歴</a></li>
                 </ul>
             </li>
-            <li><a href="list.do">お知らせ</a>
+            <li><a href="/in/listArticle">お知らせ</a>
                 <ul>
-                    <li><a href="list.do">投稿目録</a></li>
-                    <li><a href="write.do">投稿書き込み</a></li>
+                    <li><a href="/in/listArticle">投稿目録</a></li>
+                    <li><a href="/in/newArticleForm">投稿書き込み</a></li>
                 </ul>
             </li>
         </ul>

@@ -1,10 +1,9 @@
 package org.logistics.service;
 
-import java.util.Date;
-
 import org.logistics.domain.PageDTO;
 import org.logistics.domain.PageLogDTO;
 import org.logistics.domain.ProductRegiVO;
+import org.logistics.domain.ProductVO;
 
 
 public interface BoardService {
@@ -18,7 +17,12 @@ public interface BoardService {
 	public PageLogDTO getNumberProductLog(int code);
 	
 	public void register(ProductRegiVO productregivo);
-	public void Logregister(ProductRegiVO productregivo, Date date);
+	public void Logregister(ProductRegiVO productregivo); 
+	
+	public ProductVO SearchNumberProduct(int code);
+	public void ProductUpdate(ProductRegiVO productregivo);
+	public void ProductLogUpdate(ProductRegiVO productregivo);
+	
 	
 	
 	

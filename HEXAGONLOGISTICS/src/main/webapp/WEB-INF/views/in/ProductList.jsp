@@ -13,7 +13,7 @@
 
 	function openChild() {
 	    window.name = "parentForm";
-	    openWin = window.open("/in/ProductSerchilistAlert", "childForm", "width=800, height=600, resizable=no, scrollbars=no");
+	    openWin = window.open("/in/ProductSerchlistAlert", "childForm", "width=800, height=600, resizable=no, scrollbars=no");
 	}
 
 	function setParentText() {
@@ -71,7 +71,7 @@
 </c:if>
 			</form>
 
-			<!-- <button type="submit" class="submit-button" onclick="openChild()">製品名検索</button> -->
+			<button type="submit" class="submit-button" onclick="openChild()">製品名検索</button>
 
 
 			<table border="1">

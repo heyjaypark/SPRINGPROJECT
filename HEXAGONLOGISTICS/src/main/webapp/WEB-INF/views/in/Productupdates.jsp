@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -17,18 +18,18 @@
 		<!-- 수정할 품목을 품목코드로 검색해 정보를 불러온다
 		修正する品目を品目コードで検索して情報を読み込む -->
 		<div>
-			<form action="productsearch1.do" method="post">
+			<form action="/in/Productupdatesearch" method="post">
 				<p>
 					品目コード:<input type="text" name="p_no" value="${param.p_no}">
 					<button type="submit">検索</button>
 					<br />
-					<c:if test="${errors.NumberFormatException}">品目コードを入力してください。</c:if>
+					<%-- <c:if test="${errors.NumberFormatException}">品目コードを入力してください。</c:if> --%>
 				</p>
 			</form>
 		</div>
 	</div>
 	<div align="center">
-		<form action="productupdate.do" method="post">
+		<form:form modelAttribute="productRegiVO" action="/in/Productupdates" method="post">
 			<table border="1">
 				<tr>
 				</tr>
@@ -66,15 +67,15 @@
 						<td><input type="text" name="p_incheon" size = "5" /></td>
 						<td>${product1.price}</td>
 						<td><input type="text" name="price" size = "5"  /></td>
-						<td><input type="date" name="date" id="today"> <input
-							type="hidden" name="writer" value="${authUser.name }"></td>
+						<td><input type="date" name="p_date" id="today">
+						 <%-- <input	type="hidden" name="writer" value="${authUser.name }"> --%></td>
 						
 					</tr>
 				</c:if>
 				<%-- </c:if> --%>
 			</table>
 			<button type="submit" class="submit-button">入庫</button>
-		</form>
+		</form:form>
 
 	</div>
 	<!-- 에러발생 및 수정성공시 문자표시

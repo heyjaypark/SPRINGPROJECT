@@ -15,7 +15,7 @@
 	
 	function openChild() {
 	    window.name = "parentForm";
-	    openWin = window.open("productsearchchange.do", "childForm", "width=800, height=600, resizable=no, scrollbars=no");
+	    openWin = window.open("/in/ProductSerchlistAlert", "childForm", "width=800, height=600, resizable=no, scrollbars=no");
 	}
 
 	function setParentText() {
@@ -58,7 +58,7 @@
 				<input type="text" name="code" id="code" value = "${param.code}"  list = "searchOptions"
 				placeholder="${param.code}" />
 				<datalist id ="searchOptions">
-				<c:forEach var="product" items="${productPage.content}">
+				<c:forEach var="product" items="${product.content}">
 				<search option>${product.p_name}</search>
 				</c:forEach>
 				</datalist>

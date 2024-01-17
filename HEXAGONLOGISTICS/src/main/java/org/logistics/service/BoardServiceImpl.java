@@ -105,16 +105,43 @@ public class BoardServiceImpl implements BoardService {
 
 	/* ProductLogList Finish */
 
-	
+	/* PRODUCTREGI */
 	  @Override public void register(ProductRegiVO productregivo) {
-		  
-		  
 	  mapper.ProductRegi(productregivo);
 }
+	
 	  @Override
-	  public void Logregister(ProductRegiVO productregivo, Date date) {
-		mapper.ProductLogRegi(productregivo, date);  
-	  }
+	  public void Logregister(ProductRegiVO productregivo) {
+	  mapper.ProductLogRegi(productregivo); }
+	
+	  
+	  /* PRODUCTREGI FINISH */
+	  
+	/* PRODUCTUPDATE */
+	  
+		@Override
+		public ProductVO SearchNumberProduct(int p_no) {
+			
+
+			ProductVO content = mapper.ProductUpdateSearch(p_no);
+			
+			return content;
+
+		}
+		
+		@Override
+		public void ProductUpdate(ProductRegiVO productregivo) {
+			mapper.ProductUpdate(productregivo);
+		}
+		
+		@Override
+		public void ProductLogUpdate(ProductRegiVO productregivo) {
+			mapper.ProductLogUpdate(productregivo);
+			
+		}
+		
+	  
+	  
 	  
 	  }
 	  

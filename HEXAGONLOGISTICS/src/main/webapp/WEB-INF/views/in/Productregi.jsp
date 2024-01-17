@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
  <%@ include file="base.jsp" %>
     <div class="content">
     <div align="center">
-<form id='actionForm' action="/in/ProductRegist" method="post">	
+<form:form modelAttribute="productRegiVO" action="/in/ProductRegist" method="post">
 	<table border="1">
 
 <tr>
@@ -44,7 +45,7 @@
 <input type="text" name="price" size="27%"/>
 </td>
 <td>
-<input type="date" name="date" id="today">
+<input type="date" name="p_date" id="today">
 
 <%-- <input type="hidden" name="writer" value="${authUser.name }"> --%>
 </td>
@@ -72,7 +73,7 @@ alert("登録されました");
 
 
 
-</form>
+</form:form>
 
 </div>
 </div>
