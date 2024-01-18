@@ -102,6 +102,7 @@
 <update id="ProductUpdate" parameterType="org.logistics.domain.ProductRegiVO">
 		update product_list set p_seoul = p_seoul + #{p_seoul},p_suwon= p_suwon + #{p_suwon}, p_incheon = p_incheon + #{p_incheon},price=#{price} where p_no = #{p_no}
 	</update>	
+
 	
 <insert id="ProductLogUpdate" parameterType="org.logistics.domain.ProductRegiVO">
     INSERT INTO product_log (L_no,l_class,p_no,l_name,l_seoul,l_suwon,l_incheon,l_price,l_date,L_writer) VALUES (
@@ -117,6 +118,27 @@
         'asdf'
     )
 </insert>
+
+<!-- PRODUCTUPDATEFINISH -->
+
+<!-- SALESREGIST -->
+
+<update id="RegistSales" parameterType="org.logistics.domain.ProductRegiVO">
+		update product_list set p_seoul = p_seoul - #{p_seoul},p_suwon= p_suwon - #{p_suwon}, p_incheon = p_incheon - #{p_incheon} where p_no = #{p_no}
+</update>
+<insert id="RegistSalesLog" parameterType="org.logistics.domain.ProductRegiVO">
+ INSERT INTO SALES_LIST VALUES(S_SALES_LIST.NEXTVAL,#{p_no},#{p_seoul},#{p_suwon},#{p_incheon},#{p_date},'asdf')
+</insert>
+	
+<!-- SALESLIST -->
+<select id= "SalesList" resultType = "org.logistics.domain.ProductSalesVO">
+SELECT A.NUM, S_NUM, A.P_NO, B.P_NAME, S_SEOUL, S_SUWON, S_INCHEON, S_DATE,
+ PRICE FROM (SELECT ROWNUM AS NUM, SALES_LIST.* FROM SALES_LIST)
+ A, PRODUCT_LIST B  WHERE A.P_NO = B.P_NO AND A.NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} ORDER BY S_NUM
+ </select>
+
+
+
 
 
 

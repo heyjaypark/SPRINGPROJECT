@@ -1,12 +1,12 @@
 package org.logistics.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.logistics.domain.PageDTO;
 import org.logistics.domain.PageLogDTO;
 import org.logistics.domain.ProductLogVO;
 import org.logistics.domain.ProductRegiVO;
+import org.logistics.domain.ProductSalesVO;
 import org.logistics.domain.ProductVO;
 import org.logistics.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,43 +106,55 @@ public class BoardServiceImpl implements BoardService {
 	/* ProductLogList Finish */
 
 	/* PRODUCTREGI */
-	  @Override public void register(ProductRegiVO productregivo) {
-	  mapper.ProductRegi(productregivo);
-}
-	
-	  @Override
-	  public void Logregister(ProductRegiVO productregivo) {
-	  mapper.ProductLogRegi(productregivo); }
-	
-	  
-	  /* PRODUCTREGI FINISH */
-	  
+	@Override
+	public void register(ProductRegiVO productregivo) {
+		mapper.ProductRegi(productregivo);
+	}
+
+	@Override
+	public void Logregister(ProductRegiVO productregivo) {
+		mapper.ProductLogRegi(productregivo);
+	}
+
+	/* PRODUCTREGI FINISH */
+
 	/* PRODUCTUPDATE */
-	  
-		@Override
-		public ProductVO SearchNumberProduct(int p_no) {
-			
 
-			ProductVO content = mapper.ProductUpdateSearch(p_no);
-			
-			return content;
+	@Override
+	public ProductVO SearchNumberProduct(int p_no) {
 
-		}
-		
-		@Override
-		public void ProductUpdate(ProductRegiVO productregivo) {
-			mapper.ProductUpdate(productregivo);
-		}
-		
-		@Override
-		public void ProductLogUpdate(ProductRegiVO productregivo) {
-			mapper.ProductLogUpdate(productregivo);
-			
-		}
-		
-	  
-	  
-	  
-	  }
-	  
+		ProductVO content = mapper.ProductUpdateSearch(p_no);
 
+		return content;
+
+	}
+
+	@Override
+	public void ProductUpdate(ProductRegiVO productregivo) {
+		mapper.ProductUpdate(productregivo);
+	}
+
+	@Override
+	public void ProductLogUpdate(ProductRegiVO productregivo) {
+		mapper.ProductLogUpdate(productregivo);
+
+	}
+
+	@Override
+	public void RegistSales(ProductRegiVO productvo) {
+		mapper.RegistSales(productvo);
+	}
+
+	@Override
+	public void RegistSalesLog(ProductRegiVO productvo) {
+		mapper.RegistSalesLog(productvo);
+	}
+
+	@Override
+	public ProductSalesVO SalesList(ProductSalesVO productsale) {
+		ProductSalesVO content = mapper.SalesList(productsale);
+
+		return content;
+
+	}
+}

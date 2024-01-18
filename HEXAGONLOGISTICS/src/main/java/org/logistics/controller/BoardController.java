@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.logistics.domain.ProductRegiVO;
-import org.logistics.domain.ProductVO;
+import org.logistics.domain.ProductSalesVO;
 import org.logistics.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +26,8 @@ public class BoardController {
 	/* PRODUCTLIST */
 	@GetMapping("/ProductList")
 	public void ProductList(@RequestParam(name = "pageNum", defaultValue = "1") int pageNum, Model model) {
-
 		model.addAttribute("product", service.getProductPage(pageNum));
+		
 
 	}
 
@@ -78,6 +78,11 @@ public class BoardController {
 		
 	}
 	
+	@GetMapping("/ProductSerchlistAlert")
+	public void ProductSerchlistAlert() {
+		
+	}
+	
 	
 	
 	
@@ -122,14 +127,8 @@ public class BoardController {
 
 	}
 
-	@GetMapping("/Productupdates")
-	public void Productupdates() {
-
-	}
-	@GetMapping("/RegistSales")
-	public void RegistSales() {
-		
-	}
+	
+	
 	@GetMapping("/ListSales_overview")
 	public void ListSales_overview() {
 		
@@ -142,10 +141,7 @@ public class BoardController {
 	public void newArticleForm() {
 		
 	}
-	@GetMapping("/ProductSerchlistAlert")
-	public void ProductSerchlistAlert() {
-		
-	}
+	
 	
 
 	@PostMapping("/ProductRegist")
@@ -158,6 +154,8 @@ public class BoardController {
 		return "redirect:/in/Productregi";
 	}
 	/* PRODUCT REGI FINISH */
+	
+	
 	/* PRODUCT UPDATE */
 	@PostMapping("/Productupdatesearch")
 	public String ProductupdateSearch(@RequestParam("p_no") String p_no, Model model) {
@@ -175,15 +173,51 @@ public class BoardController {
 		
 		return "/in/Productupdates";
 	}
+	
+	@GetMapping("/Productupdates")
+	public void Productupdates() {
+
+	}
 			
-	
-	
-	
-	
-	
-	
-	
 	/* PRODUCT UPDATE FINISH */
+	
+	/* SALE REGI */
+	@PostMapping("/searchsales")
+	public String searchsales(@RequestParam("p_no") String p_no, Model model) {
+
+		model.addAttribute("prod",service.SearchNumberProduct(Integer.parseInt(p_no)));
+		
+		return "/in/RegistSales";
+
+	}
+	@PostMapping("/registSales")
+	public String registSales(@ModelAttribute ProductRegiVO productregivo) {
+		service.RegistSales(productregivo);
+		service.RegistSalesLog(productregivo);
+		
+		
+		return "/in/RegistSales";
+	}
+	
+	@GetMapping("/RegistSales")
+	public void RegistSales() {
+		
+		
+	}
+	/* SALE REGI FINISH */
+	
+	
+	/*
+	 * @GetMapping("/ListSales_overview") public ProductSalesVO
+	 * ListSales_overview(@ModelAttribute ProductSalesVO productsales) {
+	 * ProductSalesVO content = service.SalesList(productsales);
+	 * 
+	 * 
+	 * return content; }
+	 */
+	 
+	
+	
 
 
 

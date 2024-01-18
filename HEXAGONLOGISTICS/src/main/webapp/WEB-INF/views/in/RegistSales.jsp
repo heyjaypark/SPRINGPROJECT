@@ -75,13 +75,13 @@ alert("登録されました。");
         販売したい品目の情報を検索 -->
         <div align="center">
             <c:if test="${errors.p_no}">品目コードを入力してください。</c:if>
-            <form action="selectSales.do" method="post">
+            <form action="/in/searchsales" method="post">
                 <input type="text" name="p_no" placeholder="品目コードを入力してください。">
                 <button type="submit">検索</button>
             </form>
         </div>
 <div align="center">
-    <form action="registSales.do" method="POST">
+    <form action="/in/registSales" method="POST">
     <table id="myTable">
     <tr>
         <th>品目コード</th>
@@ -104,14 +104,15 @@ alert("登録されました。");
     <tr>
     <td><input type="hidden" name="p_no" value="${prod.p_no}">${prod.p_no }</td>
     <td>${prod.p_name }</td>
-    <td><input type="hidden" name="p_seoul" value="${prod.p_seoul}">${prod.p_seoul }</td>
-    <td><input type="text" name="s_seoul" size = "5"></td>
-    <td><input type="hidden" name="p_suwon" value="${prod.p_suwon}">${prod.p_suwon }</td>
-        <td><input type="text" name="s_suwon" size = "5"></td>
-    <td><input type="hidden" name="p_incheon" value="${prod.p_incheon}">${prod.p_incheon }</td>
-        <td><input type="text" name="s_incheon" size = "5"></td>
+    <td>${prod.p_seoul }</td>
+    <td><input type="text" name="p_seoul" size = "5"></td>
+    <td>${prod.p_suwon }</td>
+        <td><input type="text" name="p_suwon" size = "5"></td>
+    <td>${prod.p_incheon }</td>
+        <td><input type="text" name="p_incheon" size = "5"></td>
     <td>${prod.price }</td>
-    <td><input type="date" name="s_date" id="today"><input type="hidden" name="s_registrant" value="${authUser.name }"></td>
+    <td><input type="date" name="p_date" id="today">
+    <%-- <input type="hidden" name="s_registrant" value="${authUser.name }"></td> --%>
     <td><button onclick="deleteRow(this)">削除</button>
     </tr>
     </c:if>
