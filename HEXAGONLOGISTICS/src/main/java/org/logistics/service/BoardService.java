@@ -3,8 +3,8 @@ package org.logistics.service;
 import org.logistics.domain.PageDTO;
 import org.logistics.domain.PageLogDTO;
 import org.logistics.domain.ProductRegiVO;
-import org.logistics.domain.ProductSalesVO;
 import org.logistics.domain.ProductVO;
+import org.logistics.domain.SalesListPageDTO;
 
 
 public interface BoardService {
@@ -28,7 +28,9 @@ public interface BoardService {
 	 public void RegistSales(ProductRegiVO productvo);
 	 public void RegistSalesLog(ProductRegiVO productvo);
 	 
-	 public ProductSalesVO SalesList(ProductSalesVO productsale);
+	 public SalesListPageDTO SalesList(int pageNum);
+	 public SalesListPageDTO getProductCodeSalesList(int code, int pageNum);
+	 public SalesListPageDTO getNumberSalesList(int code);
 	
 
 }

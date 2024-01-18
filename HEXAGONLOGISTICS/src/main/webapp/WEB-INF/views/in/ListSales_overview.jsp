@@ -13,7 +13,7 @@
 	<%@ include file="base.jsp"%>
 	<div class="content">
 		<div align="center">
-			<form action="salesSearch.do" name="p_no" method="post">
+			<form action="/in/ListSales_Searchview" name="p_no" method="get">
 				<div>
 					<select name="select_num">
 						<option value="1">取引番号</option>
@@ -43,43 +43,43 @@
 
 				</tr>
 
-				<c:if test="${salesPage.hasNoArticles()}">
-					<tr>
+				<%-- <c:if test="${salesPage.hasNoArticles()}"> --%>
+					<!-- <tr>
 						<td colspan="7">販売履歴がありません。</td>
-					</tr>
-				</c:if>
+					</tr> -->
+				<%-- </c:if> --%>
 
 				<!-- 판매이력 리스트
 			販売履歴リスト -->
 				<c:forEach var="sales" items="${salesPage.content}">
 					<tr>
-						<td>${sales.s_Num}</td>
-						<td>${sales.p_No}</td>
-						<td>${sales.p_Name}</td>
-						<td>${sales.s_Seoul}</td>
-						<td>${sales.s_Suwon}</td>
-						<td>${sales.s_Incheon}</td>
-						<td>${sales.s_Date}</td>
+						<td>${sales.s_num}</td>
+						<td>${sales.p_no}</td>
+						<td>${sales.p_name}</td>
+						<td>${sales.s_seoul}</td>
+						<td>${sales.s_suwon}</td>
+						<td>${sales.s_incheon}</td>
+						<td>${sales.s_date}</td>
 						<td>${sales.price}</td>
-						<td>${sales.price*(sales.s_Seoul+sales.s_Suwon+sales.s_Incheon)}</td>
-						<td>${sales.s_Registrant }</td>
+						<td>${sales.price*(sales.s_seoul+sales.s_suwon+sales.s_incheon)}</td>
+						<td>${sales.s_registrant }</td>
 					</tr>
 				</c:forEach>
-				<c:if test="${salesPage.hasArticles()}">
+				<%-- <c:if test="${salesPage.hasArticles()}"> --%>
 					<tr>
 						<td colspan="10">
 							<!-- 페이징 코드. 단위는 5개
 						ページングコード。 単位は五つ --> <c:if test="${salesPage.startPage > 5}">
-								<a href="salesList.do?pageNo=${salesPage.startPage - 5}">[以前]</a>
+								<a href="/in/ListSales_overview?pageNum=${salesPage.startPage - 5}">[以前]</a>
 							</c:if> <c:forEach var="pNo" begin="${salesPage.startPage}"
 								end="${salesPage.endPage}">
-								<a href="salesList.do?pageNo=${pNo}">[${pNo}]</a>
+								<a href="/in/ListSales_overview?pageNum=${pNo}">[${pNo}]</a>
 							</c:forEach> <c:if test="${salesPage.endPage < salesPage.totalPages}">
-								<a href="salesList.do?pageNo=${salesPage.startPage + 5}">[次のページへ]</a>
+								<a href="/in/ListSales_overview?pageNum=${salesPage.startPage + 5}">[次のページへ]</a>
 							</c:if>
 						</td>
 					</tr>
-				</c:if>
+				<%-- </c:if> --%>
 			</table>
 		</div>
 	</div>

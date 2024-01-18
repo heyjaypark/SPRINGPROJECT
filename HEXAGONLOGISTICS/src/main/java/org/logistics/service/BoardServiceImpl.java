@@ -8,6 +8,7 @@ import org.logistics.domain.ProductLogVO;
 import org.logistics.domain.ProductRegiVO;
 import org.logistics.domain.ProductSalesVO;
 import org.logistics.domain.ProductVO;
+import org.logistics.domain.SalesListPageDTO;
 import org.logistics.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -151,10 +152,35 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public ProductSalesVO SalesList(ProductSalesVO productsale) {
-		ProductSalesVO content = mapper.SalesList(productsale);
+	public SalesListPageDTO SalesList(int pageNum) {
+		int size = 10;
 
-		return content;
+		List<ProductSalesVO> content = mapper.SalesList(pageNum, size);
+		int total = mapper.getTotalSaleCount();
+		SalesListPageDTO saleslistpagedto = new SalesListPageDTO(total, pageNum, size, content);
+
+		return saleslistpagedto;
 
 	}
+	 @Override
+	 public SalesListPageDTO getProductCodeSalesList(int code, int pageNum) {
+		 int size = 10;
+		 
+		 List<ProductSalesVO> content = mapper.getSearchProductCodeSalesList(pageNum, size, code);
+		 int total = mapper.getProductCodeSalesTotalCount(code);
+		 SalesListPageDTO saleslistpagedto = new SalesListPageDTO(total, pageNum, size, content);
+		 return saleslistpagedto;
+	 }
+	 
+	 
+	 @Override
+	 public SalesListPageDTO getNumberSalesList(int code) {
+		 int size = 10;
+		 int pageNum = 1;
+		 List<ProductSalesVO> content = mapper.getSearchNumberSalesList(code);
+		 SalesListPageDTO saleslistpagedto = new SalesListPageDTO(1, pageNum, size, content);
+		 return saleslistpagedto;
+		 
+	 }
+	 
 }

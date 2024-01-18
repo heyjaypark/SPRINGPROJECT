@@ -36,14 +36,18 @@ public interface BoardMapper {
 	 public void ProductLogUpdate(ProductRegiVO productvo);
 	 
 	 
-	 //regist sale
+	 //Saleregist
 	 public void RegistSales(ProductRegiVO productvo);
 	 public void RegistSalesLog(ProductRegiVO productvo);
 	 
-	 //regist list
-	 public ProductSalesVO SalesList(ProductSalesVO productsales);
+	 //Saleslist
+	 public List<ProductSalesVO> SalesList(@Param("pageNum") int pageNum, @Param("size") int size);
+	 public int getTotalSaleCount();
 	 
-	 
+	 //SalesSearch
+	 public int getProductCodeSalesTotalCount(@Param("code") int code);
+	 List<ProductSalesVO> getSearchProductCodeSalesList(@Param("pageNum") int pageNum, @Param("size") int size, @Param("code") int code);
+	 List<ProductSalesVO> getSearchNumberSalesList(@Param("code") int code);
 	 
 	 
 	 

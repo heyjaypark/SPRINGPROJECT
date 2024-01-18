@@ -137,6 +137,34 @@ SELECT A.NUM, S_NUM, A.P_NO, B.P_NAME, S_SEOUL, S_SUWON, S_INCHEON, S_DATE,
  A, PRODUCT_LIST B  WHERE A.P_NO = B.P_NO AND A.NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} ORDER BY S_NUM
  </select>
 
+	<select id="getTotalSaleCount" resultType="int">
+		select count(*) from Sales_list
+	</select>
+	
+	
+ 
+
+
+
+
+	<select id="getSearchProductCodeSalesList" resultType="org.logistics.domain.ProductSalesVO">
+		SELECT S_NUM, SALE.P_NO, PRODUCT_LIST.P_NAME, S_SEOUL, S_SUWON, S_INCHEON,
+ S_DATE, PRICE FROM (SELECT ROWNUM AS NUM, SALES_LIST.* FROM SALES_LIST WHERE P_NO=#{code})
+ SALE, PRODUCT_LIST WHERE PRODUCT_LIST.P_NO = SALE.P_NO AND SALE.NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} 
+ORDER BY S_NUM
+		 
+	</select>
+	<select id="getProductCodeSalesTotalCount" resultType="int">
+	SELECT COUNT(*) FROM SALES_LIST WHERE P_NO = #{code}
+	
+	</select>
+	
+
+	<select id="getSearchNumberSalesList" resultType="org.logistics.domain.ProductSalesVO">
+		SELECT S_NUM, SALE.P_NO, PRODUCT_LIST.P_NAME, S_SEOUL, S_SUWON, S_INCHEON, S_DATE, PRICE
+ FROM (SELECT ROWNUM AS NUM, SALES_LIST.* FROM SALES_LIST WHERE S_NUM=#{code}) SALE, PRODUCT_LIST
+ WHERE PRODUCT_LIST.P_NO = SALE.P_NO ORDER BY S_NUM
+	</select>
 
 
 

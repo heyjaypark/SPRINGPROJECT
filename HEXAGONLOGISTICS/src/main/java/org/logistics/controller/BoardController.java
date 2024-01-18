@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.logistics.domain.ProductRegiVO;
-import org.logistics.domain.ProductSalesVO;
+import org.logistics.domain.SalesListPageDTO;
 import org.logistics.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -129,10 +129,7 @@ public class BoardController {
 
 	
 	
-	@GetMapping("/ListSales_overview")
-	public void ListSales_overview() {
-		
-	}
+	
 	@GetMapping("/listArticle")
 	public void listArticle() {
 		
@@ -207,14 +204,46 @@ public class BoardController {
 	/* SALE REGI FINISH */
 	
 	
-	/*
-	 * @GetMapping("/ListSales_overview") public ProductSalesVO
-	 * ListSales_overview(@ModelAttribute ProductSalesVO productsales) {
-	 * ProductSalesVO content = service.SalesList(productsales);
-	 * 
-	 * 
-	 * return content; }
-	 */
+	
+	  @GetMapping("/ListSales_overview") 
+	  public void ListSales_overview(@RequestParam(name = "pageNum", defaultValue = "1") int pageNum, Model model) {
+	  
+	  model.addAttribute("salesPage", service.SalesList(pageNum));
+	  
+	  }
+	
+	  
+	  
+	  @GetMapping("/ListSales_Searchview") 
+	  public void ListSales_Searchview(@RequestParam(name = "pageNum", defaultValue = "1") int pageNum,
+	  @RequestParam("select_num") int selectNum, @RequestParam("code") String code,
+	  Model model) {
+		  
+		  Map<String, Boolean> errors = new HashMap<>();
+			model.addAttribute("errors", errors);
+
+			try {
+				if (selectNum == 1) {
+
+					model.addAttribute("salesPage", service.getNumberSalesList(Integer.parseInt(code)));
+							
+
+				} else {
+
+					model.addAttribute("salesPage", service.getProductCodeSalesList(Integer.parseInt(code), pageNum));
+				}
+			} catch (NumberFormatException e) {
+				errors.put("NumberFormatException", Boolean.TRUE);
+
+			}
+			model.addAttribute("errors", errors);
+	  
+	  
+	  
+	  
+	  }
+	 
+	 
 	 
 	
 	

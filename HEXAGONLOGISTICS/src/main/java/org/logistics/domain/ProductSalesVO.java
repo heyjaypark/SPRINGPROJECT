@@ -16,8 +16,9 @@ public class ProductSalesVO {
 	private int s_seoul;
 	private int s_suwon;
 	private int s_incheon;
-	private Date date;
-	private String S_REGISTRANT;
+	private int price;
+	private Date s_date;
+	private String s_registrant;
 	
 	
 	

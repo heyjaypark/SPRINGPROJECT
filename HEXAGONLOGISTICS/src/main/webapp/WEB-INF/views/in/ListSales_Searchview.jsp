@@ -16,14 +16,14 @@
 		<div align="center">
 			<!-- 판매번호 또는 품목번호로 검색할 수 있다
 		販売番号または品目番号で検索できる -->
-			<form action="salesSearch.do" name="p_no" method="post">
+			<form action="/in/ListSales_Searchview" name="p_no" method="get">
 				<div>
 					<select name="select_num">
 						<option value="1">取引番号</option>
 						<option value="2">品目コード</option>
 					</select> <input type="text" name="code" value="${param.code}" required>
 					<input type="submit" value="検索">
-					<c:if test="${errors.Notnum}">数字だけ入力してください。</c:if>
+					<%-- <c:if test="${errors.Notnum}">数字だけ入力してください。</c:if> --%>
 				</div>
 			</form>
 		</div>
@@ -44,45 +44,45 @@
 					<th>Total</th>
 					<th>登録者</th>
 				</tr>
-				<c:if test="${salesPage.hasNoArticles()}">
-					<tr>
+				<%-- <c:if test="${salesPage.hasNoArticles()}"> --%>
+				<!-- 	<tr>
 						<td colspan="7">該当販売履歴がありません。</td>
-					</tr>
-				</c:if>
+					</tr> -->
+				<%-- </c:if> --%>
 				<!-- 판매리스트를 표시한다
 			販売リスト表示 -->
 				<c:forEach var="sales" items="${salesPage.content}">
 					<tr>
-						<td>${sales.s_Num}</td>
-						<td>${sales.p_No}</td>
-						<td>${sales.p_Name}</td>
-						<td>${sales.s_Seoul}</td>
-						<td>${sales.s_Suwon}</td>
-						<td>${sales.s_Incheon}</td>
-						<td>${sales.s_Date}</td>
+						<td>${sales.s_num}</td>
+						<td>${sales.p_no}</td>
+						<td>${sales.p_name}</td>
+						<td>${sales.s_seoul}</td>
+						<td>${sales.s_suwon}</td>
+						<td>${sales.s_incheon}</td>
+						<td>${sales.s_date}</td>
 						<td>${sales.price}</td>
-						<td>${sales.price*(sales.s_Seoul+sales.s_Suwon+sales.s_Incheon)}</td>
-						<td>${sales.s_Registrant }</td>
+						<td>${sales.price*(sales.s_seoul+sales.s_suwon+sales.s_incheon)}</td>
+						<td>${sales.s_registrant }</td>
 					</tr>
 				</c:forEach>
-				<c:if test="${salesPage.hasArticles()}">
+				<%-- <c:if test="${salesPage.hasArticles()}"> --%>
 					<tr>
 						<td colspan="10">
 							<!-- 페이징 코드. 단위는 5개
 			ページングコード。 単位は五つ --> <c:if test="${salesPage.startPage > 5}">
 								<a
-									href="salesSearch.do?select_num=2&code=${param.code}&pageNo=${salesPage.startPage - 5}">[以前]</a>
+									href="/in/ListSales_Searchview?select_num=2&code=${param.code}&pageNum=${salesPage.startPage - 5}">[以前]</a>
 							</c:if> <c:forEach var="pNo" begin="${salesPage.startPage}"
 								end="${salesPage.endPage}">
 								<a
-									href="salesSearch.do?select_num=2&code=${param.code}&pageNo=${pNo}">[${pNo}]</a>
+									href="/in/ListSales_Searchview?select_num=2&code=${param.code}&pageNum=${pNo}">[${pNo}]</a>
 							</c:forEach> <c:if test="${salesPage.endPage < salesPage.totalPages}">
 								<a
-									href="salesSearch.do?select_num=2&code=${param.code}&pageNo=${salesPage.startPage + 5}">[次のページへ]</a>
+									href="/in/ListSales_Searchview?select_num=2&code=${param.code}&pageNum=${salesPage.startPage + 5}">[次のページへ]</a>
 							</c:if>
 						</td>
 					</tr>
-				</c:if>
+				<%-- </c:if> --%>
 			</table>
 		</div>
 	</div>
