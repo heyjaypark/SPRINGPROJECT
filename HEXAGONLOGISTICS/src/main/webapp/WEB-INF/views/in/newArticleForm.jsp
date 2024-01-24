@@ -14,12 +14,14 @@
 	<%@ include file="base.jsp"%>
 	<div class="content">
 		<div class="contentTable" align="center">
-			<form action="write.do" method="post">
+			<form action="/in/write" method="post">
 				<table border="1">
 					<tr>
+					
 						<th><font color=“#000000” size=“11”> タイトル</font></th>
 						<td><input class="title" type="text" name="title"
 							value="${param.title}" /></td>
+							
 						<!-- 제목은 공백이 아닐 것
 タイトルは空白でないこと -->
 						<c:if test="${errors.title}">タイトルを入力してください。</c:if>
@@ -28,6 +30,7 @@
 						<th><font color=“#000000” size=“11”> 内容</font></th>
 						<td><textarea name="content" rows="30" cols="100">${param.content}</textarea></td>
 					</tr>
+					
 
 				</table>
 				<button class=submit-button>登録</button>

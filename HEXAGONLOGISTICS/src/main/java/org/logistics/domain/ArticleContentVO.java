@@ -11,6 +11,8 @@ import lombok.ToString;
 public class ArticleContentVO {
 
 
-	private Integer number;
+	private Integer Article;
 	private String content;
+	
+	
 }

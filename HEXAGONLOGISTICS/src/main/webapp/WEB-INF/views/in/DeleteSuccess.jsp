@@ -15,7 +15,7 @@
 	<%@ include file="base.jsp"%>
 	<div class="content">
 		<div align="center">
-			<form action="list.do" method="post">
+			<form action="/in/listArticle" method="get">
 				<p>削除されました。</p>
 
 				<button class=submit-button>お知らせリストに移動</button>

@@ -19,10 +19,10 @@
 			<br />投稿を登録しました。<br />
 			<br />
 		</div>
-		${ctxPath = pageContext.request.contextPath ; '' }
+		
 		<div class="success">
-			<a href="${ctxPath}/list.do"><button class=submit-button>投稿リストを見る</button></a>
-			<a href="${ctxPath}/read.do?no=${newArticleNo}"><button
+			<a href="/in/listArticle"><button class=submit-button>投稿リストを見る</button></a>
+			<a href="/in/read?no=${newArticleNo}"><button
 					class=submit-button>掲示物の内容を見る</button></a>
 		</div>
 	</div>

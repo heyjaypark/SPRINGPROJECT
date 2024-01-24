@@ -47,7 +47,7 @@
 <td>
 <input type="date" name="p_date" id="today">
 
-<%-- <input type="hidden" name="writer" value="${authUser.name }"> --%>
+<input type="hidden" name="writer" value="${authUser.name }">
 </td>
 </tr>
 </table>

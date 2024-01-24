@@ -17,13 +17,13 @@
 		<div align="center">
 			<!-- 회원가입에 필요한 정보 입력란
 会員登録に必要な情報入力欄 -->
-			<form action="join.do" method="post">
+			<form action="/in/JoinHexagon" method="post">
 				<p>
 					社員番号:<br />
 					<input type="text" name="id" value="${param.id}">
 					<c:if test="${errors.id}">
 						<br>社員番号を入力してください。</c:if>
-					<c:if test="${errors.duplicateId}">
+					<c:if test="${errors['duplicateId']}">
 						<br>登録済みの社員番号です。</c:if>
 				</p>
 				<p>
@@ -41,7 +41,7 @@
 				<p>
 					パスワード確認:<br />
 					<input type="password" name="confirmPassword">
-					<c:if test="${errors.confirmPassword}">
+					<c:if test="${errors['confirmPassword']}">
 						<br>暗号確認を入力してください。</c:if>
 					<c:if test="${errors.notMatch}">
 						<br>パスワードと確認が一致しません。</c:if>

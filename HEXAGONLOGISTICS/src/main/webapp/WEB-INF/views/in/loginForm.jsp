@@ -22,27 +22,27 @@
 		<!-- 로그인 폼과 오류메세지
 ログインフォームとエラーメッセージ -->
 		<div align="center">
-			<form action="login.do" method="post">
+			<form action="/in/doLogin" method="post">
 
 				<c:if test="${errors.idOrPwNotMatch}">
 社員番号とパスワードが一致しません。
 </c:if>
 				<p>
 					社員番号:<br />
-					<input type="text" name="id" value="${param.id}">
+					<input type="text" name="shain_no" value="${param.id}">
 					<c:if test="${errors.id}">
 						<br />社員番号を入力してください。</c:if>
 				</p>
 				<p>
 					パスワード:<br />
-					<input type="password" name="password">
+					<input type="password" name="pw_id">
 					<c:if test="${errors.password}">
 						<br />パスワードを入力してください。</c:if>
 				</p>
 				<br />
 				<button class="submit-button">ログイン</button>
 			</form>
-			<form action="join.do" method=post>
+			<form action="/in/joinForm" method=post>
 				<br />
 				<button type="submit" class="submit-button">会員登録ページへ</button>
 			</form>

@@ -112,7 +112,7 @@ alert("登録されました。");
         <td><input type="text" name="p_incheon" size = "5"></td>
     <td>${prod.price }</td>
     <td><input type="date" name="p_date" id="today">
-    <%-- <input type="hidden" name="s_registrant" value="${authUser.name }"></td> --%>
+    <input type="hidden" name="writer" value="${authUser.name }"></td>
     <td><button onclick="deleteRow(this)">削除</button>
     </tr>
     </c:if>

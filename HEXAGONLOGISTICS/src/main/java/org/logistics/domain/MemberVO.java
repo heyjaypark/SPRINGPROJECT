@@ -9,10 +9,16 @@ import lombok.ToString;
 @Setter
 @Getter
 public class MemberVO {
-	private String id;
-	private String name;
-	private String password;
+	private String shain_no;
+	private String shain_name;
+	private String pw_id;
 	
 	
+	public boolean matchPassword(String pwd) {
+		return pw_id.equals(pwd);
+	}
 
+	public void changePassword(String newPwd) {
+		this.pw_id = newPwd;
+	}
 }

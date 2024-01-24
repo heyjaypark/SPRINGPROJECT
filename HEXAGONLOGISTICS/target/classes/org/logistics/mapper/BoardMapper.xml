@@ -5,167 +5,295 @@
 <mapper namespace="org.logistics.mapper.BoardMapper">
 
 
-<!-- ProductList -->
-	<select id="getListWithPaging" resultType="org.logistics.domain.ProductVO">
+	<!-- ProductList -->
+	<select id="getListWithPaging"
+		resultType="org.logistics.domain.ProductVO">
 	<![CDATA[
 		SELECT * FROM (SELECT ROWNUM AS NUM, product_list.* FROM product_list)WHERE NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} order by p_no
 		]]>
 	</select>
 
-	
-<!-- BoardMapper.getTotalCount() -->
+
+	<!-- BoardMapper.getTotalCount() -->
 	<select id="getTotalCount" resultType="int">
-		select count(*) from product_list
+		select count(*) from
+		product_list
 	</select>
-	
-<select id="getNameTotalCount" resultType="int">
-    select count(*) from product_list where p_name like '%' || #{code} || '%'
-    
-</select>
 
+	<select id="getNameTotalCount" resultType="int">
+		select count(*) from
+		product_list where p_name like '%' || #{code} || '%'
 
-
-<!-- BoardMapper.getSearchNameList() -->
-	<select id="getSearchNameList" resultType="org.logistics.domain.ProductVO">
-		SELECT * FROM (SELECT ROWNUM AS NUM, product_list.* FROM product_list where p_name like '%' || #{code} || '%')WHERE NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} order by p_no 
 	</select>
-	
-<!-- BoardMapper.getSearchNumberList() -->
-	<select id="getSearchNumberList" resultType="org.logistics.domain.ProductVO">
-		select * from product_list where P_no = #{code} 
-	</select>
-	
-  <!-- ProductList Finish	 -->
-	
-	
-<!-- ProductLogList.jsp -->	
 
-	<select id="getListWithLogPaging" resultType="org.logistics.domain.ProductLogVO">
+
+
+	<!-- BoardMapper.getSearchNameList() -->
+	<select id="getSearchNameList"
+		resultType="org.logistics.domain.ProductVO">
+		SELECT * FROM (SELECT ROWNUM AS NUM, product_list.* FROM
+		product_list where p_name like '%' || #{code} || '%')WHERE NUM BETWEEN
+		(#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} order by p_no
+	</select>
+
+	<!-- BoardMapper.getSearchNumberList() -->
+	<select id="getSearchNumberList"
+		resultType="org.logistics.domain.ProductVO">
+		select * from product_list where P_no = #{code}
+	</select>
+
+	<!-- ProductList Finish -->
+
+
+	<!-- ProductLogList.jsp -->
+
+	<select id="getListWithLogPaging"
+		resultType="org.logistics.domain.ProductLogVO">
 	<![CDATA[
 		SELECT * FROM (SELECT ROWNUM AS NUM, product_Log.* FROM product_Log)WHERE NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} order by l_no
 		]]>
 	</select>
 
-	
-<!-- BoardMapper.getTotalCount() -->
+
+	<!-- BoardMapper.getTotalCount() -->
 	<select id="getLogTotalCount" resultType="int">
-		select count(*) from product_Log
+		select count(*) from
+		product_Log
 	</select>
-	
-<select id="getNameLogTotalCount" resultType="int">
-    select count(*) from product_Log where l_name like '%' || #{code} || '%'
-    
-</select>
+
+	<select id="getNameLogTotalCount" resultType="int">
+		select count(*)
+		from product_Log where l_name like '%' || #{code} || '%'
+
+	</select>
 
 
 
-<!-- BoardMapper.getSearchNameList() -->
-	<select id="getSearchNameLogList" resultType="org.logistics.domain.ProductLogVO">
-		SELECT * FROM (SELECT ROWNUM AS NUM, product_Log.* FROM product_Log where l_name like '%' || #{code} || '%')WHERE NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} order by l_no 
+	<!-- BoardMapper.getSearchNameList() -->
+	<select id="getSearchNameLogList"
+		resultType="org.logistics.domain.ProductLogVO">
+		SELECT * FROM (SELECT ROWNUM AS NUM, product_Log.* FROM
+		product_Log where l_name like '%' || #{code} || '%')WHERE NUM BETWEEN
+		(#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} order by l_no
 	</select>
-	
-<!-- BoardMapper.getSearchNumberList() -->
-	<select id="getSearchNumberLogList" resultType="org.logistics.domain.ProductLogVO">
-		select * from product_Log where l_no = #{code} 
+
+	<!-- BoardMapper.getSearchNumberList() -->
+	<select id="getSearchNumberLogList"
+		resultType="org.logistics.domain.ProductLogVO">
+		select * from product_Log where l_no = #{code}
 	</select>
-	
-	<!-- ProductLogList.jsp Finish -->	
-	
+
+	<!-- ProductLogList.jsp Finish -->
+
 	<!-- PRODUCTREGI.jsp -->
-	
-<insert id="ProductRegi" parameterType="org.logistics.domain.ProductRegiVO">
-    INSERT INTO product_list (p_no, p_name, p_seoul, p_suwon, p_incheon, price)
-    VALUES (S_PRODUCT_LIST.nextval, #{p_name}, #{p_seoul}, #{p_suwon}, #{p_incheon}, #{price})
-</insert>
 
-<insert id="ProductLogRegi" parameterType="org.logistics.domain.ProductRegiVO">
-    INSERT INTO product_log (L_no,l_class,p_no,l_name,l_seoul,l_suwon,l_incheon,l_price,l_date,L_writer) VALUES (
-        S_PRODUCT_log.nextval,
-        '登録',
-        S_PRODUCT_LIST.currval,
-        #{p_name},
-        #{p_seoul},
-        #{p_suwon},
-        #{p_incheon},
-        #{price},
-        #{p_date},
-        'asdf'
-    )
-</insert>
+	<insert id="ProductRegi"
+		parameterType="org.logistics.domain.ProductRegiVO">
+		INSERT INTO product_list (p_no, p_name, p_seoul,
+		p_suwon, p_incheon, price)
+		VALUES (S_PRODUCT_LIST.nextval, #{p_name},
+		#{p_seoul}, #{p_suwon},
+		#{p_incheon}, #{price})
+	</insert>
 
-<!-- PRODUCTUPDATES.JSP -->
-<select id="ProductUpdateSearch" resultType="org.logistics.domain.ProductVO">
-		SELECT * FROM PRODUCT_LIST WHERE P_NO = #{p_no} 
+	<insert id="ProductLogRegi"
+		parameterType="org.logistics.domain.ProductRegiVO">
+		INSERT INTO product_log
+		(L_no,l_class,p_no,l_name,l_seoul,l_suwon,l_incheon,l_price,l_date,L_writer)
+		VALUES (
+		S_PRODUCT_log.nextval,
+		'登録',
+		S_PRODUCT_LIST.currval,
+		#{p_name},
+		#{p_seoul},
+		#{p_suwon},
+		#{p_incheon},
+		#{price},
+		#{p_date},
+		#{writer}
+		)
+	</insert>
+
+	<!-- PRODUCTUPDATES.JSP -->
+	<select id="ProductUpdateSearch"
+		resultType="org.logistics.domain.ProductVO">
+		SELECT * FROM PRODUCT_LIST WHERE P_NO = #{p_no}
 	</select>
-	
-	
-<update id="ProductUpdate" parameterType="org.logistics.domain.ProductRegiVO">
-		update product_list set p_seoul = p_seoul + #{p_seoul},p_suwon= p_suwon + #{p_suwon}, p_incheon = p_incheon + #{p_incheon},price=#{price} where p_no = #{p_no}
-	</update>	
 
-	
-<insert id="ProductLogUpdate" parameterType="org.logistics.domain.ProductRegiVO">
-    INSERT INTO product_log (L_no,l_class,p_no,l_name,l_seoul,l_suwon,l_incheon,l_price,l_date,L_writer) VALUES (
-        S_PRODUCT_log.nextval,
-        '入庫',
-        #{p_no},
-        #{p_name},
-        #{p_seoul},
-        #{p_suwon},
-        #{p_incheon},
-        #{price},
-        #{p_date},
-        'asdf'
-    )
-</insert>
 
-<!-- PRODUCTUPDATEFINISH -->
+	<update id="ProductUpdate"
+		parameterType="org.logistics.domain.ProductRegiVO">
+		update product_list set p_seoul = p_seoul +
+		#{p_seoul},p_suwon= p_suwon + #{p_suwon}, p_incheon = p_incheon +
+		#{p_incheon},price=#{price} where p_no = #{p_no}
+	</update>
 
-<!-- SALESREGIST -->
 
-<update id="RegistSales" parameterType="org.logistics.domain.ProductRegiVO">
-		update product_list set p_seoul = p_seoul - #{p_seoul},p_suwon= p_suwon - #{p_suwon}, p_incheon = p_incheon - #{p_incheon} where p_no = #{p_no}
-</update>
-<insert id="RegistSalesLog" parameterType="org.logistics.domain.ProductRegiVO">
- INSERT INTO SALES_LIST VALUES(S_SALES_LIST.NEXTVAL,#{p_no},#{p_seoul},#{p_suwon},#{p_incheon},#{p_date},'asdf')
-</insert>
-	
-<!-- SALESLIST -->
-<select id= "SalesList" resultType = "org.logistics.domain.ProductSalesVO">
-SELECT A.NUM, S_NUM, A.P_NO, B.P_NAME, S_SEOUL, S_SUWON, S_INCHEON, S_DATE,
- PRICE FROM (SELECT ROWNUM AS NUM, SALES_LIST.* FROM SALES_LIST)
- A, PRODUCT_LIST B  WHERE A.P_NO = B.P_NO AND A.NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} ORDER BY S_NUM
- </select>
+	<insert id="ProductLogUpdate"
+		parameterType="org.logistics.domain.ProductRegiVO">
+		INSERT INTO product_log
+		(L_no,l_class,p_no,l_name,l_seoul,l_suwon,l_incheon,l_price,l_date,L_writer)
+		VALUES (
+		S_PRODUCT_log.nextval,
+		'入庫',
+		#{p_no},
+		#{p_name},
+		#{p_seoul},
+		#{p_suwon},
+		#{p_incheon},
+		#{price},
+		#{p_date},
+		#{writer}
+		)
+	</insert>
+
+	<!-- PRODUCTUPDATEFINISH -->
+
+	<!-- SALESREGIST -->
+
+	<update id="RegistSales"
+		parameterType="org.logistics.domain.ProductRegiVO">
+		update product_list set p_seoul = p_seoul -
+		#{p_seoul},p_suwon= p_suwon - #{p_suwon}, p_incheon = p_incheon -
+		#{p_incheon} where p_no = #{p_no}
+	</update>
+
+	<insert id="RegistSalesLog"
+		parameterType="org.logistics.domain.ProductRegiVO">
+		INSERT INTO SALES_LIST
+		VALUES(S_SALES_LIST.NEXTVAL,#{p_no},#{p_seoul},#{p_suwon},#{p_incheon},#{p_date},#{writer})
+	</insert>
+
+	<!-- SALESLIST -->
+	<select id="SalesList"
+		resultType="org.logistics.domain.ProductSalesVO">
+		SELECT A.NUM, S_NUM, A.P_NO, B.P_NAME, S_SEOUL, S_SUWON,
+		S_INCHEON, S_DATE,
+		PRICE, S_REGISTRANT FROM (SELECT ROWNUM AS NUM,
+		SALES_LIST.* FROM SALES_LIST)
+		A, PRODUCT_LIST B WHERE A.P_NO = B.P_NO
+		AND A.NUM BETWEEN
+		(#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} ORDER
+		BY S_NUM
+	</select>
 
 	<select id="getTotalSaleCount" resultType="int">
-		select count(*) from Sales_list
+		select count(*) from
+		Sales_list
 	</select>
-	
-	
- 
 
 
 
+	<select id="getSearchProductCodeSalesList"
+		resultType="org.logistics.domain.ProductSalesVO">
+		SELECT S_NUM, SALE.P_NO, PRODUCT_LIST.P_NAME, S_SEOUL,
+		S_SUWON, S_INCHEON,
+		S_DATE, PRICE FROM (SELECT ROWNUM AS NUM,
+		SALES_LIST.* FROM SALES_LIST WHERE
+		P_NO=#{code})
+		SALE, PRODUCT_LIST
+		WHERE PRODUCT_LIST.P_NO = SALE.P_NO AND SALE.NUM BETWEEN
+		(#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size}
+		ORDER BY S_NUM
 
-	<select id="getSearchProductCodeSalesList" resultType="org.logistics.domain.ProductSalesVO">
-		SELECT S_NUM, SALE.P_NO, PRODUCT_LIST.P_NAME, S_SEOUL, S_SUWON, S_INCHEON,
- S_DATE, PRICE FROM (SELECT ROWNUM AS NUM, SALES_LIST.* FROM SALES_LIST WHERE P_NO=#{code})
- SALE, PRODUCT_LIST WHERE PRODUCT_LIST.P_NO = SALE.P_NO AND SALE.NUM BETWEEN (#{pageNum}-1)*#{size}+1 AND #{pageNum}*#{size} 
-ORDER BY S_NUM
-		 
 	</select>
 	<select id="getProductCodeSalesTotalCount" resultType="int">
-	SELECT COUNT(*) FROM SALES_LIST WHERE P_NO = #{code}
-	
-	</select>
-	
+		SELECT
+		COUNT(*) FROM SALES_LIST WHERE P_NO = #{code}
 
-	<select id="getSearchNumberSalesList" resultType="org.logistics.domain.ProductSalesVO">
-		SELECT S_NUM, SALE.P_NO, PRODUCT_LIST.P_NAME, S_SEOUL, S_SUWON, S_INCHEON, S_DATE, PRICE
- FROM (SELECT ROWNUM AS NUM, SALES_LIST.* FROM SALES_LIST WHERE S_NUM=#{code}) SALE, PRODUCT_LIST
- WHERE PRODUCT_LIST.P_NO = SALE.P_NO ORDER BY S_NUM
 	</select>
 
+
+
+	<select id="getSearchNumberSalesList"
+		resultType="org.logistics.domain.ProductSalesVO">
+		SELECT S_NUM, SALE.P_NO, PRODUCT_LIST.P_NAME, S_SEOUL,
+		S_SUWON, S_INCHEON, S_DATE, PRICE
+		FROM (SELECT ROWNUM AS NUM,
+		SALES_LIST.* FROM SALES_LIST WHERE
+		S_NUM=#{code}) SALE, PRODUCT_LIST
+		WHERE PRODUCT_LIST.P_NO = SALE.P_NO ORDER BY S_NUM
+	</select>
+
+	<!-- Member join -->
+	<insert id="MemberRegi"
+		parameterType="org.logistics.domain.JoinRequestVO">
+		INSERT INTO MEMBER_LIST
+		VALUES(#{id},#{name},#{password})
+	</insert>
+
+
+	<select id="SearchID" resultType="int">
+		SELECT count(*) FROM
+		MEMBER_LIST WHERE SHAIN_NO = #{id}
+
+	</select>
+
+	<select id="SelectById"
+		resultType="org.logistics.domain.MemberVO">
+		SELECT * FROM MEMBER_LIST WHERE SHAIN_NO = #{shain_no}
+	</select>
+
+	<!-- ARTICLE -->
+	<insert id="ArticleInsert"
+		parameterType="org.logistics.domain.ArticleVO">
+		INSERT INTO ARTICLE (ARTICLE_NO,ID, NAME,
+		TITLE, REGDATE,
+		MODDATE, READ_CNT) VALUES
+		(S_ARTICLE_LIST.NEXTVAL,#{writer.id},#{writer.name},#{title},#{regDate},null,0)
+	</insert>
+	<insert id="ArticleContentInsert"
+		parameterType="org.logistics.domain.ArticleContentVO">
+		INSERT INTO ARTICLE_CONTENT (ARTICLE_NO,CONTENT) VALUES
+		(S_ARTICLE_LIST.CURRVAL,#{content})
+	</insert>
+
+
+	<select id="ArticleList"
+		resultType="org.logistics.domain.ArticleListVO">
+		SELECT * FROM (SELECT ROWNUM AS NUM, ARTICLE.* FROM
+		ARTICLE)WHERE NUM
+		BETWEEN (#{pageNum}-1)*#{size}+1 AND
+		#{pageNum}*#{size} ORDER BY
+		ARTICLE_NO
+	</select>
+	<select id="TotalArticle" resultType="int">
+		select count(*) from
+		article
+	</select>
+	<select id="ArticleContentReadVO"
+		resultType="org.logistics.domain.ArticleContentReadVO">
+		select * from article_content where Article_no = #{no}
+	</select>
+	<select id="ArticleListVO"
+		resultType="org.logistics.domain.ArticleListVO">
+		select * from article where Article_no = #{no}
+	</select>
+
+	<update id="ArticleContentModify" parameterType="map">
+		UPDATE
+		ARTICLE_CONTENT SET CONTENT = #{content} WHERE ARTICLE_NO = #{no}
+	</update>
+
+	<update id="ArticleTitleModify" parameterType="map">
+		UPDATE ARTICLE SET TITLE = #{title}, MODDATE=SYSDATE WHERE ARTICLE_NO =
+		#{no}
+	</update>
+	<update id="ReadCountplus" >
+		UPDATE ARTICLE SET READ_CNT = READ_CNT + 1 where Article_no = #{no}
+	</update>
+	
+	<delete id = "ArticleContentDelete" parameterType = "map">
+	DELETE FROM ARTICLE_CONTENT WHERE ARTICLE_NO = #{no}
+	</delete>
+	<delete id = "ArticleTitleDelete" parameterType = "map">
+	DELETE FROM ARTICLE WHERE ARTICLE_NO = #{no}
+	</delete>
+	
+	<select id = "NewArticleNum" resultType="int">
+	select MAX(article_no) from article
+	
+	</select>
 
 
 

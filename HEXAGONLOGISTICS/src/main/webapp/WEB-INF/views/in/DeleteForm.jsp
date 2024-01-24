@@ -16,9 +16,9 @@
 	<div class="content">
 
 		<div align="center">
-			<form action="delete.do" method="post">
+			<form action="/in/Delete" method="post">
 				<p>
-					<input type="hidden" name="no" value="${modReq.articleNumber}">
+					<input type="hidden" name="no" value="${no}">
 
 				</p>
 				<p>削除しますか？</p>

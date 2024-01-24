@@ -17,10 +17,10 @@
 		<div align="center">
 
 			投稿を修正しました。 <br />
-			<br /> ${ctxPath = pageContext.request.contextPath ; '' }
+			<br /> 
 			<div class="succes">
-				<a href="${ctxPath}/list.do"><button class=submit-button>投稿リストへ</button></a>
-				<a href="${ctxPath}/read.do?no=${modReq.articleNumber}"><button
+				<a href="/in/listArticle"><button class=submit-button>投稿リストへ</button></a>
+				<a href="/in/read?no=${no}"><button
 						class=submit-button>投稿内容閲覧</button></a>
 			</div>
 		</div>

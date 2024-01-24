@@ -15,15 +15,16 @@
 	<%@ include file="base.jsp"%>
 	<div class="content">
 		<div align="center">
-			<form action="modify.do" method="post">
+			<form action="/in/modify" method="post">
 				<div class="contentTable" align="center">
 					<table border="1">
 						<tr>
 							<th>No <input type="hidden" name="no"
-								value="${modReq.articleNumber}">
+								value="${articleData.article.article_no}">
 							</th>
+							
 
-							<td>${modReq.articleNumber}</td>
+							<td>${articleData.article.article_no}</td>
 
 
 						</tr>
@@ -32,13 +33,13 @@
 							</th>
 							<!-- 제목 공백 아닐것
 	 タイトルは空白ではないこと -->
-							<td><input type="text" name="title" value="${modReq.title}"></td>
+							<td><input type="text" name="title" value="${articleData.article.title}"></td>
 						</tr>
 						<c:if test="${errors.title}">タイトルを入力してください。</c:if>
 
 						<tr>
 							<th>内容<br /></th>
-							<td><textarea name="content" rows="30" cols="50">${modReq.content}</textarea></td>
+							<td><textarea name="content" rows="30" cols="50">${articleData.content.content}</textarea></td>
 						</tr>
 					</table>
 				</div>

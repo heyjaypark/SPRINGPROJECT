@@ -1,8 +1,5 @@
 package org.logistics.domain;
 
- 
-
-
 import java.sql.Date;
 
 import lombok.Getter;
@@ -19,14 +16,8 @@ public class ProductRegiVO {
 	private int p_suwon;
 	private int p_incheon;
 	private int price;
-	 private Date p_date; 
-	/*
-	 *  private String writer;
-	 */
-	
-	
-	
-	 
-	
+	private Date p_date;
+
+	private String writer;
 
 }

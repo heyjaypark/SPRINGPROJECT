@@ -17,11 +17,11 @@
 <table>
 <tr>
 <th>No</th>
-<td>${articleData.article.number}</td>
+<td>${articleData.article.article_no}</td>
 </tr>
 <tr>
 <th>書き手</th>
-<td>${articleData.article.writer.name}</td>
+<td>${articleData.article.name}</td>
 </tr>
 <tr>
 <th>題名</th>
@@ -29,19 +29,19 @@
 </tr>
 <tr>
 <th>内容</th>
-<td><textarea name="content" rows="30" cols="50" readonly><u:pre value='${articleData.content}'/></textarea></td>
+<td><textarea name="content" rows="30" cols="50" readonly><u:pre value='${articleData.content.content}'/></textarea></td>
 </tr>
 <tr>
 <th>
 <td>
 
-<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}" />
-<a href="list.do?pageNo=${pageNo}"><button class=submit-button>投稿リストへ</button></a>
+<c:set var="pageNum" value="${empty param.pageNum ? '1' : param.pageNum}" />
+<a href="/in/listArticle?pageNum=${pageNum}"><button class=submit-button>投稿リストへ</button></a>
 <!-- 로그인한 유저가 작성자라면 상세 기능 버튼을 표시한다
 ログインしたユーザーが作成者であれば詳細機能ボタンを表示する -->
-<c:if test="${authUser.id == articleData.article.writer.id}">
-<a href="modify.do?no=${articleData.article.number}"><button class=submit-button>投稿修正</button></a>
-<a href="delete.do?no=${articleData.article.number}"><button class=submit-button>投稿削除</button></a>
+<c:if test="${authUser.id == articleData.article.id}">
+<a href="/in/modifyForm?no=${articleData.article.article_no}&pageNum=${pageNum}"><button class=submit-button>投稿修正</button></a>
+<a href="/in/DeleteForm?no=${articleData.article.article_no}"><button class=submit-button>投稿削除</button></a>
 </c:if>
 </td>
 </tr>

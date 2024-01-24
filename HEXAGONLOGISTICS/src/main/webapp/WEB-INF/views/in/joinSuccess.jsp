@@ -15,7 +15,7 @@
 	<div class="content">
 		<div align="center">
 			${param.name}様、会員登録に成功しました。<br>
-			<br> <a href="login.do"><button class=submit-button>ログインする</button></a>
+			<br> <a href="/in/loginForm"><button class=submit-button>ログインする</button></a>
 			<br />
 		</div>
 	</div>

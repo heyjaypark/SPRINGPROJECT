@@ -68,7 +68,8 @@
 						<td>${product1.price}</td>
 						<td><input type="text" name="price" size = "5"  /></td>
 						<td><input type="date" name="p_date" id="today">
-						 <%-- <input	type="hidden" name="writer" value="${authUser.name }"> --%></td>
+						
+						 <input	type="hidden" name="writer" value="${authUser.name }"></td>
 						
 					</tr>
 				</c:if>

@@ -3,6 +3,12 @@ package org.logistics.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.logistics.domain.ArticleContentReadVO;
+import org.logistics.domain.ArticleContentVO;
+import org.logistics.domain.ArticleListVO;
+import org.logistics.domain.ArticleVO;
+import org.logistics.domain.JoinRequestVO;
+import org.logistics.domain.MemberVO;
 import org.logistics.domain.ProductLogVO;
 import org.logistics.domain.ProductRegiVO;
 import org.logistics.domain.ProductSalesVO;
@@ -49,7 +55,36 @@ public interface BoardMapper {
 	 List<ProductSalesVO> getSearchProductCodeSalesList(@Param("pageNum") int pageNum, @Param("size") int size, @Param("code") int code);
 	 List<ProductSalesVO> getSearchNumberSalesList(@Param("code") int code);
 	 
+	 //join member
+	 public void MemberRegi(JoinRequestVO joinrequestvo);
+	 public int SearchID(@Param("id") String id);
 	 
+	 //login member
+	 public MemberVO SelectById(@Param("shain_no") String shain_no);
+	 
+	 //article insert
+	 public void ArticleInsert(ArticleVO articlevo); 
+	 public void ArticleContentInsert(ArticleContentVO articlecontentvo); 
+	 
+	 //article List
+	 public List<ArticleListVO> ArticleList(@Param("pageNum") int pageNum, @Param("size") int size);
+	 public int TotalArticle();
+	 
+	 //article Read
+	 public ArticleContentReadVO ArticleContentReadVO(@Param("no") int no);
+	 public ArticleListVO ArticleListVO(@Param("no") int no);
+	 public void ReadCountplus(@Param("no") int no);
+	 
+	 //article modifiy
+	 public void ArticleContentModify(@Param("no") int no,@Param("content") String content);
+	 public void ArticleTitleModify(@Param("no") int no,@Param("title") String title);
+	 
+	 public void ArticleContentDelete(@Param("no") int no);
+	 public void ArticleTitleDelete(@Param("no") int no);
+	 
+	 public int NewArticleNum();
+	
+	
 	 
 
 }

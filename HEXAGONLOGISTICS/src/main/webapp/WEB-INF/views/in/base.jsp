@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
     <div class="banner">
         <div class="banner-logo">
             <a href="/"><img src="/resources/images/logo.png" alt="이미지"></a>
@@ -8,11 +9,11 @@
         <h1>HEXAGON LOGISTICS</h1>
         <div class="banner-login">
             <u:notLogin>
-                <a href="login.do">［ログイン］</a>
+                <a href="/in/loginForm">［ログイン］</a>
             </u:notLogin>
             <u:isLogin>
                 ${authUser.name}様ようこそ。
-                <a href="logout.do">[ログアウト]</a>
+                <a href="/in/logout">[ログアウト]</a>
             </u:isLogin>
             </div>
         </div>
